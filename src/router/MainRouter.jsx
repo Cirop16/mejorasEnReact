@@ -3,7 +3,7 @@ import { Category, Home, ItemDetail, NotFound } from "../pages";
 import { NavBar } from "../components";
 
 export const MainRouter = () => {
-
+  
   return (
     <Router>
       <NavBar />
