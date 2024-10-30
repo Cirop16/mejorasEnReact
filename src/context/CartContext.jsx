@@ -2,15 +2,13 @@ import { createContext, useState } from "react";
 
 export const CartContext = createContext();
 
-//Proveedor: basicamente es el componente que provee nuestros datos
-//Consumidores: son los componentes que aprovechan estos datos
 
 export const CartProvider = ({ children }) => {
-  //Estado Global
+  
   const [cartState, setCartState] = useState([]);
 
   const addItem = (product, qtyItem) => {
-    // setCartState(cartState + 1);
+ 
     const existingProduct = cartState.find((item) => item.id === product.id);
 
     if (existingProduct) {
@@ -42,6 +40,10 @@ export const CartProvider = ({ children }) => {
     }
   };
 
+  const deleteItem = (product) => {
+    setCartState(cartState.filter((item) => item.id != product.id));
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -49,6 +51,7 @@ export const CartProvider = ({ children }) => {
         setCartState,
         addItem,
         removeItem,
+        deleteItem
       }}
     >
       {children}
